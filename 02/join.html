@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return check()">
+    <input type="text" id="id" placeholder="ID"><br>
+    <input type="text" id="pwd" placeholder="PWD"><br>
+    <input type="text" id="name" placeholder="NAME"><br>
+    <label for="m">Man</label>
+    <input type="radio" id="m" name="trans">
+    <label for="w">Woman</label>
+    <input type="radio" id="w" name="trans"><br>
+    <input type="text" id="phoneNum" placeholder="PhoneNum" max="11"><br>
+    <button>Ok</button>
+    </form>
+    <script>
+        let id = document.querySelector('#id');
+        let pwd = document.querySelector('#pwd');
+        let name = document.querySelector('#name');
+        let trans = document.querySelector('input[name=trans]:checked');
+        let phonNum = document.querySelector('#phoneNum');
+
+        function check(){
+            if(id.value.trim().length < 5){
+                alert('아이디는 5자 이상')
+                return false;
+            }
+            if(pwd.value.trim().length < 4){
+                alert('비밀번호 4자 이상')
+                return false;
+            }
+            if(name.value.trim().length < 2){
+                alert('이름 2자 이상')
+                return false;
+            }
+            if(trans === null){
+                alert('check trans')
+                return false;
+            }
+            if(phonNum.value.length !== 11){
+                alert('폰번호는 11자')
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

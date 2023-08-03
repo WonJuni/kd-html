@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" onsubmit="return check()">
+        <input type="text" id="id" placeholder="ID"><br>
+        <input type="password" id="pwd" placeholder="PWD"><br>
+        <button>Login</button>
+    </form>
+    <script>
+        function check(){
+            const id = document.querySelector('#id');
+            const pwd = document.querySelector('#pwd');
+            if(id.value.trim().length < 4){
+                alert('plz id is <4')
+                id.focus();
+                return false;
+            }
+            if(pwd.value.trim().length<4){
+                alert('plz pwd is <4')
+                pwd.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
