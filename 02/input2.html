@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" onsubmit="return check()">
+        <label for="h1">Hike</label>
+        <input type="checkbox" id="h1" name="hobby">
+        <label for="h2">game</label>
+        <input type="checkbox" id="h1" name="hobby">
+        <label for="h3">motocycle</label>
+        <input type="checkbox" id="h1" name="hobby">
+        <label for="h4">drink</label>
+        <input type="checkbox" id="h1" name="hobby">
+        <button>Choose</button>
+    </form>
+    <script>
+        function check(){
+            const hobbyObj2 = document.querySelectorAll('[name=hobby]:checked');
+            if(hobbyObj2.length < 2){
+                alert('hobby is < 2');
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

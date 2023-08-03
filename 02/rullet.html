@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h3 id="myPoint"></h3>
+    <input type="text" id="bet" placeholder="bet"><br>
+    <input type="text" id="num" placeholder="num">
+    <button onclick="startRoulette()">Let's go lotto</button>
+
+    <table border="1">
+
+
+    </table>
+    <div id="result"></div>
+    <div id="result1"></div>
+    <div id="result2"></div>
+    <script>
+        let redIdx = -1;
+        let blueIdx = -1;
+        let greenIdx = -1;
+
+        function startRoulette() {
+            const tbs = document.querySelectorAll('td');
+            const interval = setInterval(function () {
+                for (let i = 0; i < tbs.length; i++) {
+                    tbs[i].style = 'background-color: white;';
+                }
+                greenIdx = Math.floor(Math.random() * 10);
+                tbs[greenIdx].style = 'background-color: yellow;';
+
+                blueIdx = Math.floor(Math.random() * 10);
+                tbs[blueIdx].style = 'background-color: aqua;';
+
+                redIdx = Math.floor(Math.random() * 10);
+                tbs[redIdx].style = 'background-color: tomato;';
+            }, 500);
+            setTimeout(function () {
+                alert(`tomato = ${redIdx + 1}, blueNum=${blueIdx + 1}, greenNum=${greenIdx + 1}`);
+                clearInterval(interval);
+                document.querySelector('#result').innerHTML = `red : ${redIdx + 1}`;
+                document.querySelector('#result1').innerHTML = `blue : ${blueIdx + 1}`;
+                document.querySelector('#result2').innerHTML = `yellow : ${greenIdx + 1}`;
+
+                if (redIdx + 1 === parseInt(document.querySelector('#num').value)) {
+                    let point = parseInt(document.querySelector('#bet').value) * 3
+                    document.querySelector('#myPoint').innerHTML = point;
+                }
+                if (blueIdx + 1 === parseInt(document.querySelector('#num').value)) {
+                    let point = parseInt(document.querySelector('#bet').value) * 5
+                    document.querySelector('#myPoint').innerHTML = point;
+                }
+                if (greenIdx + 1 === parseInt(document.querySelector('#num').value)) {
+                    let point = parseInt(document.querySelector('#bet').value) * 6
+                    document.querySelector('#myPoint').innerHTML = point;
+                }
+            }, 3000)
+        }
+        let html = '';
+        for (let i = 1; i <= 50; i++) {
+            if (i % 10 === 1) {
+                html += '<tr>'
+            }
+            html += '<td>' + i + '</td>';
+
+            if (i % 10 === 0) {
+                html += '</tr>'
+            }
+        }
+
+        document.querySelector('table').innerHTML = html;
+    </script>
+</body>
+
+</html>
