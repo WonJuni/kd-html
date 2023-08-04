@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [];
+        window.onload = function () {
+            const gDiv = document.querySelector('#gDiv');
+            gDiv.style.display = 'none';
+            const sDiv = document.querySelector('#sDiv');
+            document.querySelector('#sBtn').onclick = function () {
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+                for (let i = 0; i <= 2; i++) {
+                    let rNum = Math.floor(Math.random() * 9) + 1;
+                    if (arr.indexOf(rNum) === -1) {
+                        arr.push(rNum);
+                    } else {
+                        i--;
+                    }
+                }
+                console.log(arr);
+            }
+
+            document.querySelector('#gBtn').onclick = function () {
+                let num1 = document.querySelector('#num1').value;
+                let num2 = document.querySelector('#num2').value;
+                let num3 = document.querySelector('#num3').value;
+
+                let numArr = [num1, num2, num3];
+
+
+                // for(let i=0; i<=arr.length; i++){
+                //     for(let j=0; j<=numArr; j++){
+                //         if(arr[i] == parseInt(numArr[j])){
+                //             ball++;
+                //             if(i==j){
+                //                 ball--;
+                //                 strike++;
+                //             }
+                //         }
+                //     }
+                // }
+                for (let i = 0; i <= arr.length; i++) {
+                    let ball = 0;
+                    let strike = 0;
+                    for (let j = 0; j <= numArr; j++) {
+                        if (arr[i] === parseInt(numArr[j]) && i === j) {
+                            strike++;
+                            continue;
+                        }
+                        if (arr[i] === parseInt(numArr[j])) {
+                            ball++;
+                        }
+                    }
+                }
+                console.log(strike);
+                console.log(ball);
+            }
+        }
+    </script>
+
+    <div id="sDiv">
+        <button id="sBtn">Start</button>
+    </div>
+
+    <di id="gDiv">
+        <input type="number" min="0" max="9" id="num1">
+        <input type="number" min="0" max="9" id="num2">
+        <input type="number" min="0" max="9" id="num3">
+        <button id="gBtn">match</button>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            padding: 1px;
+            margin: 1px;
+            width: 80px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="start">Start</button>
+    <div id="table">
+    </div>
+    <script>
+        function reverse(obj){
+            console.log(obj);
+            const num = obj.getAttribute('data-num');
+            alert(obj.getAttribute('data-num'));
+            const imgPath = `/img/cards/${num}.png`;
+            obj.src = imgPath;
+        }
+        document.querySelector("#start").onclick = function () {
+            let html = '<table border="1">';
+            let randomCnt = 0;
+            let cnt = [];
+            for(let i=0; i<=51; i++){
+                let rNum = Math.floor(Math.random()*52);
+                if(cnt.indexOf(rNum)==-1){
+                    cnt.push(rNum);
+                }else{
+                    i--;
+                }
+            }
+            
+            for (let i = 0; i < 4; i++) {
+                html += '<tr>'
+                for (let j = 0; j < 13; j++) {
+                    html += `<td><img src="/img/cards/back.png" data-num=${cnt[randomCnt++]} onclick="reverse(this)"></td>`
+                    console.log(cnt.length);
+                }
+                html += '</tr>'
+            }
+            html += '</table>';
+            document.querySelector('#table').innerHTML = html;
+        }
+
+
+    </script>
+</body>
+
+</html>
