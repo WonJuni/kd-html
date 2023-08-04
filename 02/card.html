@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        img{
+        img {
             padding: 1px;
             margin: 1px;
             width: 80px;
@@ -20,30 +20,49 @@
     <div id="table">
     </div>
     <script>
-        function reverse(obj){
-            console.log(obj);
+        // let clickCnt = 0
+        function reverse(obj) {
+            // clickCnt ++;
+            // if(clickCnt >= 3){
+            //     alert('이미클릭');
+            //     return
+            // }
+            const openImgs = document.querySelectorAll('img[data-open="1"]');
+            if (openImgs.length === 2) {
+                return;
+            }
+            console.log(openImgs.length);
+            if (openImgs.length === 1) {
+                setTimeout(function () {
+                    for (let i = 0; i <= openImgs.length; i++) {
+                        openImgs[i].setAttribute('src','/img/cards/back.png');
+                        openImgs[i].setAttribute('data-open', '0');
+                    }
+                }, 2000)
+            }
             const num = obj.getAttribute('data-num');
-            alert(obj.getAttribute('data-num'));
             const imgPath = `/img/cards/${num}.png`;
             obj.src = imgPath;
+            obj.setAttribute('data-open', '1');
+
         }
         document.querySelector("#start").onclick = function () {
             let html = '<table border="1">';
             let randomCnt = 0;
             let cnt = [];
-            for(let i=0; i<=51; i++){
-                let rNum = Math.floor(Math.random()*52);
-                if(cnt.indexOf(rNum)==-1){
+            for (let i = 0; i <= 51; i++) {
+                let rNum = Math.floor(Math.random() * 52);
+                if (cnt.indexOf(rNum) == -1) {
                     cnt.push(rNum);
-                }else{
+                } else {
                     i--;
                 }
             }
-            
+
             for (let i = 0; i < 4; i++) {
                 html += '<tr>'
                 for (let j = 0; j < 13; j++) {
-                    html += `<td><img src="/img/cards/back.png" data-num=${cnt[randomCnt++]} onclick="reverse(this)"></td>`
+                    html += `<td><img src="/img/cards/back.png" data-num=${cnt[randomCnt++]} onclick="reverse(this)" data-open="0" ></td>`
                     console.log(cnt.length);
                 }
                 html += '</tr>'
